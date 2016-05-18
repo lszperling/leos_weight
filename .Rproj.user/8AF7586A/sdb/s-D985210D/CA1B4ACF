@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\n\ncohort_info_control <-  read.csv(\"/home/leonel/Downloads/Easy_questions_0_1_2_-_Control_Group_-_Russia-USER_RETENTION_DAILY_2016-04-11_2016-05-08.csv\")\ncohort_info_test <-  read.csv(\"/home/leonel/Downloads/Easy_questions_0_1_2_-_Test_subjects_-_Russia-USER_RETENTION_DAILY_2016-04-11_2016-05-08.csv\")\n\n\nsum(cohort_info_control$X0)/\nsum(cohort_info_control$Cohort.Size)\n\nsum(cohort_info_test$X0)/\n  sum(cohort_info_test$Cohort.Size)\n\n\n\n\n\n\nclean_info_control <- clean_cohort_info(cohort_info_control)\nclean_info_test <- clean_cohort_info(cohort_info_test)\n\n\n\nclean_cohort_info <- function(cohort_info){\n  cohort_info %>% mutate(coso = X1 / Cohort.Size) %>% tbl_df()\n  \n  cohort_info[cohort_info == 0] <- NA\n  cohort_info <- cohort_info %>% filter(!is.na(X1))\n  cohort_info <- cohort_info[,colSums(is.na(cohort_info))<nrow(cohort_info)]\n  cohort_info\n  \n  column_names <- names(cohort_info)[3:length(names(cohort_info))]\n  \n  # X0 = round(X0 / Cohort.Size * 100, 2)\n  paste0(\" round(\", column_names, \" / Cohort.Size * 100, 2)\")\n  \n  percentual_things <- cohort_info %>% mutate_(.dots = paste0(\" round(\", column_names, \" / Cohort.Size * 100, 2)\")) %>% select_(.dots = paste0(\"-\",column_names))\n  names(percentual_things) <- c(names(percentual_things)[1:2], column_names )\n  \n  names(cohort_info)[-c(1,2)]\n  cohort_info\n}\n\n\n\nclean_info_test\n\nget_mean(clean_info_test)\nget_mean(clean_info_control)\n\nget_mean <- function(cohort_info, retention_column = \"X0\"){\n  # retention_column = \"X0\"\n  sum(cohort_info[retention_column], na.rm = T) / \n    sum(cohort_info$Cohort.Size[!is.na(cohort_info[retention_column])])  \n}\n\n\n\nsum(cohort_info_test$Cohort.Size[!is.na(cohort_info_test[\"X0\"])])  \nsum(cohort_info_test[\"X0\"], na.rm = T)\n\nsum(cohort_info_test[\"X0\"], na.rm = T) /\nsum(cohort_info_test$Cohort.Size[!is.na(cohort_info_test[\"X0\"])])  \n\n\n\n\nsum(cohort_info_control[\"X0\"], na.rm = T) / \nsum(cohort_info_control$Cohort.Size[!is.na(cohort_info_control[\"X0\"])])  \n\n\n\n\nget_percentages <- function(data_set){\n  cohort_size = sum(data_set$Cohort.Size)\n  c(sum(data_set$X0) / cohort_size ,(sum(data_set$X1) / cohort_size) ,(sum(data_set$X2) / cohort_size),\n    (sum(data_set$X3) / cohort_size) ,(sum(data_set$X4) / cohort_size),(sum(data_set$X5) / cohort_size),\n    (sum(data_set$X6) / cohort_size),(sum(data_set$X7) / cohort_size),(sum(data_set$X8) / cohort_size))\n}\n\n\ncohort_info_test$Cohort.Size\n\n\ncohort_info_test$X1\nresults <- data.frame(test = get_percentages(clean_info_test), control = get_percentages(clean_info_control))\nresults %>% mutate(test-control)\n",
+    "created" : 1462543884949.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3708519033",
+    "id" : "CA1B4ACF",
+    "lastKnownWriteTime" : 1462794869,
+    "last_content_update" : 1462794869681,
+    "path" : "~/feo_analytics/r_analytics/clean_FB_cohort_data.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

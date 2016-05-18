@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(rCharts)\nlibrary(shinyBS)\n\n\nshinyUI(fluidPage(\n  \n  # Application title\n  titlePanel(\"LEo's weight through time\"),\n  showOutput(\"plot_weight\", \"highcharts\"),\n  \n  bsCollapse(id = \"collapseExample\",\n             bsCollapsePanel(\"Other example\",\n                             showOutput(\"other_weight\", \"highcharts\"),\n                             style = \"info\")),\n\n  \n  bsCollapse(id = \"collapseExample\", \n             bsCollapsePanel(\"More info\", \n                             tableOutput(\"tabla\"),\n                             textOutput(\"chance\"),\n                             plotOutput(\"peso_leo\"),\n                             style = \"info\"))\n  \n  \n))\n",
+    "created" : 1462529216494.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2002816258",
+    "id" : "3BD6495E",
+    "lastKnownWriteTime" : 1463578192,
+    "last_content_update" : 1463578192331,
+    "path" : "/srv/shiny-server/leos_weight/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

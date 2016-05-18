@@ -1,0 +1,9 @@
+{
+    "path" : "/srv/shiny-server/leos_weight",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
