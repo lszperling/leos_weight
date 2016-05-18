@@ -10,7 +10,7 @@ library(dplyr)
 library(rCharts)
 library(ggplot2)
 
-peso_leo <- tbl_df(read.csv("/home/leonel/Downloads/Vitacora de peso - Sheet1.csv")) 
+peso_leo <- tbl_df(read.csv("Vitacora de peso - Sheet1.csv")) 
 
 shinyServer(function(input, output) {
 
